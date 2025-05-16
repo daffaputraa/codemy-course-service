@@ -1,0 +1,23 @@
+{
+  "name": "codemy-course-service",
+  "version": "1.0.0",
+  "description": "Service aplikasi edukasi Codemy",
+  "homepage": "https://github.com/daffaputraa/codemy-course-service#readme",
+  "bugs": {
+    "url": "https://github.com/daffaputraa/codemy-course-service/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daffaputraa/codemy-course-service.git"
+  },
+  "license": "ISC",
+  "author": "Daffa Putra Ganteng",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
