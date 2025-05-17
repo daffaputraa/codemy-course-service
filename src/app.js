@@ -1,10 +1,12 @@
 const express = require('express');
-const sequelize = require('./config/db')
+const sequelize = require('./config/db');
+const router = require('./routes');
 
 const app = express()
 app.use(express.json())
-
+app.use('/api', router)
 require('./models/m_user')
+require('./models/r_kategori')
 
 sequelize.authenticate()
     .then(() => console.log(`🟢 Terkoneksi ke database`))

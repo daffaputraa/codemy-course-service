@@ -7,7 +7,6 @@ const m_user = sequelize.define("m_user", {
         type: DataTypes.CHAR(16),
         primaryKey: true,
         allowNull: false,
-        // defaultValue: "",
     },
     muser_nama: {
         type: DataTypes.STRING(80),
@@ -31,7 +30,6 @@ const m_user = sequelize.define("m_user", {
         allowNull : true
     }
 },  { 
-    
         hooks: {
         beforeCreate: (instance) => {
             instance.muser_id = null;
