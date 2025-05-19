@@ -28,7 +28,7 @@ const m_user = sequelize.define("m_user", {
     muser_refferal_code : {
         type : DataTypes.STRING(10),
         allowNull : true
-    }
+    },
 },  { 
         hooks: {
         beforeCreate: (instance) => {

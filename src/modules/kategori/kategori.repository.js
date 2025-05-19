@@ -10,7 +10,7 @@ exports.getAllKategoriRepository = async () => {
         include : [
             {
                 model : m_kursus,
-                as : 'kursus',
+                as : 'm_kursus',
                 attributes : ['mkursus_id', 'mkursus_judul']
             }
         ]
@@ -30,7 +30,7 @@ exports.deleteKategoriRepository = async (id) => {
         where : { rkategori_id : id }
     })
 
-    return deleted> 0
+    return deleted > 0
 }
 
 

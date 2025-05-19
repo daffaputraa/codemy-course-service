@@ -7,6 +7,7 @@ app.use(express.json())
 app.use('/api', router)
 require('./models/m_user')
 require('./models/r_kategori')
+require('./models/m_kursus')
 
 sequelize.authenticate()
     .then(() => console.log(`🟢 Terkoneksi ke database`))
