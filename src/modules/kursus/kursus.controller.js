@@ -1,9 +1,15 @@
 const { responBerhasil, responGagal } = require("../../middleware/logger_helper");
-// const { createKategoriService, getAllKategoriService, editKategoriService, deleteKategoriService } = require("./kategori.service");
-const { getAllKursusService, createKategoriService } = require("./kursus.service");
+const { getAllKursusService, createKategoriService, editKursusService } = require("./kursus.service");
 
 exports.createKursusController = async (req, res) => {
-    const payloadBody = req.body
+    const payloadBody = req.body;
+
+    if(req.file){
+        payloadBody.mkursus_thumbnail = `/uploads/${req.file.filename}`
+    }
+
+    console.log(payloadBody);
+    
     try {
         const response = await createKategoriService(payloadBody);
         res.status(200).json(
@@ -14,7 +20,7 @@ exports.createKursusController = async (req, res) => {
         res.status(500).json(
                 responGagal({
                     code: "0001",
-                    message: `Ada yang salah nih : ${error.message}`,
+                    message: `${error.message}`,
                 })
         );
     }
@@ -30,6 +36,7 @@ exports.getAllKursusController = async (req, res) => {
             })
         )
     } catch (error) {
+        console.error("🧨 ERROR DETAIL:", error);
         res.status(500).json(
             responGagal({
                 code : "0001",
@@ -39,27 +46,27 @@ exports.getAllKursusController = async (req, res) => {
     }
 }
 
-// exports.editKategoriController = async (req, res) => {
-//     const paramsId = req.params.idKategori;
-//     const payloadBody = req.body;
+exports.editKursusController = async (req, res) => {
+    const paramsId = req.params.idKursus;
+    const payloadBody = req.body;
 
-//     try {
-//         const response = await editKategoriService(paramsId, payloadBody);
-//         res.status(200).json(
-//             responBerhasil({
-//                 data : response,
-//                 message : "Data berhasil diedit!"
+    try {
+        const response = await editKursusService(paramsId, payloadBody);
+        res.status(200).json(
+            responBerhasil({
+                data : response,
+                message : "Data berhasil diedit!"
 
-//             })
-//         )
-//     } catch (error) {   
-//         res.status(500).json(
-//             responGagal({
-//                 code : "0001",
-//                 message : `Ada yang salah nih : ${error}`
-//         }));
-//     }
-// }
+            })
+        )
+    } catch (error) {   
+        res.status(500).json(
+            responGagal({
+                code : "0001",
+                message : `Ada yang salah nih : ${error}`
+        }));
+    }
+}
 
 
 // exports.deleteKategoriController = async (req, res) => {

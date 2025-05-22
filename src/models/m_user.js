@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require('../config/db')
 const Sequelize = require("sequelize");
+const m_kursus = require("./m_kursus");
 
 const m_user = sequelize.define("m_user", {
     muser_id: {
@@ -29,12 +30,6 @@ const m_user = sequelize.define("m_user", {
         type : DataTypes.STRING(10),
         allowNull : true
     },
-},  { 
-        hooks: {
-        beforeCreate: (instance) => {
-            instance.muser_id = null;
-        }
-    }
 });
 
 module.exports = m_user

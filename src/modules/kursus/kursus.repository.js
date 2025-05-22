@@ -16,8 +16,8 @@ exports.getAllKursusRepository = async () => {
     });
 }
 
-// exports.editKategoriRepository = async (id, payload) => {
-//     const [updated] = await r_kategori.update(payload, {
+// exports.editKursusRepository = async (id, payload) => {
+//     const [updated] = await m_kursus.update(payload, {
 //         where: { rkategori_id: id },
 //     });
 

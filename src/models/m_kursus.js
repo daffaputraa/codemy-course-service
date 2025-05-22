@@ -1,11 +1,11 @@
-const {Sequelize, DataTypes} = require('sequelize')
+const { DataTypes } = require('sequelize')
 const sequelize = require('../config/db');
 
 const m_kursus = sequelize.define("m_kursus", {
     mkursus_id: {
-        type: DataTypes.STRING(16),
+        type: DataTypes.INTEGER.UNSIGNED,        
         primaryKey : true,
-        allowNull: true,
+        autoIncrement: true,
     },
     mkursus_judul: {
         type: DataTypes.STRING(255),
@@ -27,9 +27,9 @@ const m_kursus = sequelize.define("m_kursus", {
         type: DataTypes.STRING(10),
         allowNull: false,
         references: {
-        model: 'r_kategoris',
-        key: "rkategori_id",
-    },
+            model: 'r_kategoris',
+            key: "rkategori_id",
+        },
 },
 });
 
