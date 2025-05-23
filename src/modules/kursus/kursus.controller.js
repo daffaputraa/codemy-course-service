@@ -1,20 +1,19 @@
 const { responBerhasil, responGagal } = require("../../middleware/logger_helper");
-const { getAllKursusService, createKategoriService, editKursusService } = require("./kursus.service");
+const { getAllKursusService, createKategoriService, editKursusService, getKursusById, getKursusByIdService } = require("./kursus.service");
 
 exports.createKursusController = async (req, res) => {
+    
     const payloadBody = req.body;
-
     if(req.file){
         payloadBody.mkursus_thumbnail = `/uploads/${req.file.filename}`
     }
 
-    console.log(payloadBody);
-    
     try {
         const response = await createKategoriService(payloadBody);
         res.status(200).json(
-                responBerhasil({data : response, 
-                message : "Kursus berhasil dibuat!"
+                responBerhasil({
+                    data : response, 
+                    message : "Kursus berhasil dibuat!"
             }))
     } catch (error) {
         res.status(500).json(
@@ -36,7 +35,6 @@ exports.getAllKursusController = async (req, res) => {
             })
         )
     } catch (error) {
-        console.error("🧨 ERROR DETAIL:", error);
         res.status(500).json(
             responGagal({
                 code : "0001",
@@ -65,6 +63,27 @@ exports.editKursusController = async (req, res) => {
                 code : "0001",
                 message : `Ada yang salah nih : ${error}`
         }));
+    }
+}
+
+exports.getKursusByIdController = async (req, res) => {
+
+    const paramsId = await req.params.idKursus
+    try {
+        const response = await getKursusByIdService(paramsId);
+        res.status(200).json(
+            responBerhasil({
+                data : response,
+                message : "Berhasil mengambil semua krusus"
+            })
+        )
+    } catch (error) {
+        res.status(500).json(
+            responGagal({
+                code : "0001",
+                message : `Ada yang salah nih : ${error}`
+            })
+        )
     }
 }
 
