@@ -15,7 +15,7 @@ require('./models/m_episode')
 
 sequelize.authenticate()
     .then(() => console.log(`🟢 Terkoneksi ke database`))
-    .then(() => sequelize.sync({ alter : true }))
+    // .then(() => sequelize.sync({ alter : true }))
     .then(() =>  console.log('✅ Model sudah disinkronkan ke database'))
     .catch((err) => console.log('🔴 Error koneksi ke db:', err))
 

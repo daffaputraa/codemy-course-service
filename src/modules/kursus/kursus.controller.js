@@ -67,8 +67,8 @@ exports.editKursusController = async (req, res) => {
 }
 
 exports.getKursusByIdController = async (req, res) => {
-
     const paramsId = await req.params.idKursus
+    
     try {
         const response = await getKursusByIdService(paramsId);
         res.status(200).json(

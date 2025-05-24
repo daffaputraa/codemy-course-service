@@ -34,13 +34,13 @@ exports.getKursusByIdRepository = async (idKursus) => {
     });
 }
 
-// exports.editKursusRepository = async (id, payload) => {
-//     const [updated] = await m_kursus.update(payload, {
-//         where: { rkategori_id: id },
-//     });
+exports.editKursusRepository = async (id, payload) => {
+    const [updated] = await m_kursus.update(payload, {
+        where: { mkursus_id: id },
+    });
 
-//     return updated > 0;
-// }
+    return updated > 0;
+}
 
 // exports.deleteKategoriRepository = async (id) => {
 //     const deleted = await r_kategori.destroy({
