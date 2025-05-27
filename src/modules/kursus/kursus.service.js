@@ -1,4 +1,3 @@
-// const { createKategoriRepository, getAllKategoriRepository, editKategoriRepository, deleteKategoriRepository} = require("./kategori.repository");
 const { getAllKursusRepository, createKursusRepository, editKursusRepository, getKursusByIdRepository } = require("./kursus.repository");
 
 exports.createKategoriService = async (data) => {
@@ -29,14 +28,3 @@ exports.getKursusByIdService = async (id) => {
 
     return await getKursusByIdRepository(id)
 }
-
-
-
-// exports.deleteKategoriService = async (id) => {
-//     const deleted = await deleteKategoriRepository(id)
-//     if(!deleted) {
-//         throw new Error(`Data dengan id ${id} tidak ditemukan!`);
-//     }
-
-//     return true;
-// }

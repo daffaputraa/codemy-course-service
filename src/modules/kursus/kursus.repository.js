@@ -1,4 +1,4 @@
-const { m_kursus, r_kategori, m_episode } = require("../../models");
+const { m_kursus, r_kategori, r_episode, r_bagian } = require("../../models");
 
 exports.createKursusRepository = async (payload) => {
     return await m_kursus.create(payload)
@@ -7,6 +7,17 @@ exports.createKursusRepository = async (payload) => {
 exports.getAllKursusRepository = async () => {
     return await m_kursus.findAll({
         include : [
+            {
+                model : r_bagian,
+                as : "r_bagian_kursus",
+                attributes : ["rbagian_id", "rbagian_judul"],
+                    include : [
+                        {
+                            model : r_episode, 
+                            as : "r_episode"
+                        }
+                    ]
+            },
             {
                 model : r_kategori,
                 as : "r_kategori",
@@ -25,10 +36,10 @@ exports.getKursusByIdRepository = async (idKursus) => {
                 attributes : ["rkategori_id", "rkategori_nama"]
             },
             {
-                model : m_episode,
-                as : "m_episode",
-                attributes : ["mepisode_id", "mepisode_judul", "mepisode_deskripsi", "mepisode_url"]
-            }
+                model : r_bagian,
+                as : "r_bagian_kursus",
+                attributes : ["rbagian_id", "rbagian_judul"]
+            },
         ]
         
     });

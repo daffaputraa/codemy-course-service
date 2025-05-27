@@ -2,7 +2,7 @@ const m_user = require("./m_user");
 const r_kategori = require("./r_kategori");
 const m_kursus = require("./m_kursus");
 const r_user_kursus = require("./r_user_kursus");
-const r_episode = require("./m_episode");
+const r_episode = require("./r_episode");
 const r_bagian = require("./r_bagian");
 
 // Asosiasi many to one to kursus ke kategori kursus
@@ -59,4 +59,18 @@ r_episode.belongsTo(r_bagian, {
     as : "r_bagian"
 })
 
-module.exports = { m_user, r_kategori, m_kursus, m_episode};
+// Asosiasi r_bagian ke m_kursus
+m_kursus.hasMany(r_bagian, {
+    foreignKey: "mkursus_id",
+    sourceKey: "mkursus_id",
+    as: "r_bagian_kursus"
+});
+
+r_bagian.belongsTo(m_kursus, {
+    foreignKey: "mkursus_id",
+    targetKey: "mkursus_id",
+    as: "m_kursus_bagian"
+});
+
+
+module.exports = { m_user, r_kategori, m_kursus, r_episode, r_bagian};

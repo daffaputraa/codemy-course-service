@@ -16,6 +16,14 @@ const r_bagian = sequelize.define("r_bagian",
         rbagian_nomor : {
             type : DataTypes.INTEGER,
             allowNull : false, 
+        },
+        mkursus_id: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            allowNull: false,
+            references: {
+                model: 'm_kursus',
+                key: 'mkursus_id'
+            }
         }
     }, 
     {
